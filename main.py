@@ -1,3 +1,4 @@
+
 import logging
 from random import choice
 from aiogram import Bot, Dispatcher, types
@@ -5,7 +6,7 @@ from aiogram.filters import Command
 from dotenv import dotenv_values
 
 # Инициализация бота и диспетчера
-token = dotenv_values(".env")["BOT_TOKEN"]
+token = dotenv_values(".env")["TOKEN"]
 bot = Bot(token="7548439593:AAGTiaIPfRJtfK3IgD3Ja80G66hNZlpnU1c")
 dp = Dispatcher()
 
@@ -13,8 +14,7 @@ dp = Dispatcher()
 @dp.message(Command("start"))
 async def start_handler(message: types.Message):
     name = message.from_user.first_name
-    msg = f"Привет, {name}"
-    await message.answer(msg)
+    await message.answer(f"Привет {message.from_user.first_name}")
 
 
 @dp.message(Command("myinfo"))
@@ -23,10 +23,9 @@ async def myinfo_handler(message: types.Message):
         f"ID: {message.from_user.id}\nИмя: Санжар{message.from_user.first_name}\nИмя пользователя:@luntik08_bot {message.from_user.username}"
     )
 
-
 @dp.message(Command("random"))
 async def random_name_handler(message: types.Message):
-    name = ["Бекзат", "Абдурахим", "Алихан", "Зайнаб", "Мухаммад", "Милена", "Нурчик", "Дастан", "Аскар", "Адинай", "Айгерим", "Жайыл", "Гульсана", "Фархад", "Владимир", "Ульяна", "Ербол", "Нурбол"]
+    name = ["Бекзат @Mandarin4ikpromax", "Абдурахим @TaekoOnukiii", "Тилек @Volverstn", "Гульсана @gullls_s"]
     name = choice(name)
     await message.answer(f"Случайное имя: {name}")
 
@@ -38,9 +37,8 @@ async def main():
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    import asyncio  # Добавляем этот импорт
+    import asyncio
 
     asyncio.run(main())
-
 
 
